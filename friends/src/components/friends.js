@@ -1,7 +1,7 @@
 import React from 'react';
-import moment from 'moment';
-import Loader from 'react-loader-spinner';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+
+import AddNewFriend from './AddNewFriend';
 //3rd Steps
 class Friends extends React.Component {
     state = {
@@ -10,13 +10,16 @@ class Friends extends React.Component {
       componentDidMount() {
         this.getData();
       }
-    
+  
+      
+      //gets the data 
       getData = () => {
         axiosWithAuth()
         //this friends endpoint comes from the server file, and is what is being added to the base url
           .get('/friends')
           .then(res => {
             console.log(res.data)
+            //sets the data to the friends object's state
             this.setState({
               friends: res.data 
             });
@@ -24,7 +27,7 @@ class Friends extends React.Component {
           .catch(err => console.log(err));
       };
     
-
+      
      
 
     render() {
@@ -36,7 +39,7 @@ class Friends extends React.Component {
                     <p>{friend.name} is {friend.age} years old, and his email is{friend.email} </p>
                     
             ))}
-                    
+                <AddNewFriend />    
                      
             </>
         )

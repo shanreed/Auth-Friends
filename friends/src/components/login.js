@@ -20,14 +20,20 @@ class Login extends React.Component {
 
 
   //2nd Steps
+  //When the form is submitted this will run, it makes 
+  //axios request and sends in and object with the username and password
   login = e => {
     e.preventDefault();
-    // axiosWithAuth ==> ?? an axios instance; .post() ==> ?? promise
+    // axiosWithAuth ==> ??(returns) an axios instance; .post() ==> ?? promise
     axiosWithAuth()
-      .post('/login', this.state.credentials)
+    //login endpoint in server.js handles the rest: sending a post request to it
+      .post('/login', this.state.credentials)//this.state.credentials is needed to send credentials
       .then(res => {
+        //axioxs wraps our res in which is the token in .data.payload
+        //sets the localStorage with a token object with res.data.payload(the token) and sets it to local storage
         localStorage.setItem('token', res.data.payload);
-        // redirect to the apps main page?
+        //props.history comes from the Route component that is rendering login in App.js
+        // redirect to the apps main page? when the login button is clicked
         this.props.history.push('/protected');
       })
       .catch(err => console.log(err));

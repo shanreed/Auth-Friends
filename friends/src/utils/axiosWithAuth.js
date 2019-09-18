@@ -3,7 +3,7 @@ import axios from 'axios';
 // Build a module that "creates" a new "instance" of the axios object
 // - baseURL: makes it so we do not have to include that part of the url in request only the endpoint (/login)
 // - headers object -> authorization header with the token
-
+//this is done to add custom headers
 export const axiosWithAuth = () => {
     //when login happens, in the login in function the token will be set to localStorage
     //so whenever you login in the token is set to localStorage, token will not be avaliable until you login
